@@ -24,6 +24,51 @@ void run_script()
 		{
 			break;
 		}
+		else if (acc[i] == '#')
+		{
+			++i;
+			int loop_counter = atoi(&acc[i]);
+			++i;
+			bool on = true; // if that's true loop is working
+			int j = 0; // if j == loop_counterloop isn't working
+			while (on)
+			{
+				if (acc[i] == '&' || acc[i] == ';')
+				{
+					break;
+				}
+				else if (acc[i] == ',')
+				{
+					cout << "enter:";
+					cin >> cpu[pointer];
+				}
+				else if (acc[i] == '.')
+				{
+					cout << cpu[pointer];
+				}
+				else if (acc[i] == '>')
+				{
+					cpu[pointer]++;
+				}
+				else if (acc[i] == '<')
+				{
+					cpu[pointer]--;
+				}
+				else if (acc[i] == '+')
+				{
+					pointer++;
+				}
+				else if (acc[i] == '-')
+				{
+					pointer--;
+				}
+				++j;
+				if (j == loop_counter)
+				{
+					on = false;
+				}
+			}
+		}
 		else if (acc[i] == ',')
 		{
 			cout << "enter:";
