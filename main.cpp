@@ -3,6 +3,7 @@
 #include<fstream>
 #include<vector>
 #include<process.h>
+#include <cstdlib> 
 using namespace std;
 
 char cpu[60000];           // powerful brainfuck memory
@@ -19,11 +20,7 @@ void run_script()
 		{
 			break;
     	}
-		else if (acc[i] == '$')
-		{
-
-		}
-		else if (acc[i] == '&')
+		else if (acc[i] == '&' || acc[i] == ';')
 		{
 			break;
 		}
@@ -54,7 +51,7 @@ void run_script()
 		}
 		else 
 		{
-			cout << endl << "shit in programm! symbol ¹" << i;
+			cout << endl << "shit in programm! symbol ¹" << i <<'=' << acc[i];
 			exit(-1);
 		}
 	
@@ -81,7 +78,21 @@ void check_format()
 					if (path_to_file[i] == 'f')
 					{
 						cout << "starting to run script..." << endl;
+						++i;
+						if (path_to_file[i] != NULL)
+						{
+							cout << "wrong format!";
+							exit(-1);
+						}
 					}
+					else {
+						cout << "wrong format!";
+						exit(-1);
+					}
+				}
+				else {
+					cout << "wrong format!";
+					exit(-1);
 				}
 			}
 			else {
