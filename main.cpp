@@ -4,6 +4,7 @@
 #include<vector>
 #include<process.h>
 #include <cstdlib> 
+#include"variable.h"
 using namespace std;
 
 char cpu[60000];           // powerful brainfuck memory
@@ -108,7 +109,9 @@ void run_script()
 					exit(-1);
 				}
 			}
+
 			// that's a new powerful brainfuck's mode 
+			variable var; 
 			if (acc[i] == '(')
 			{
 			
@@ -125,82 +128,198 @@ void run_script()
 				}
 				else if (acc[i] == '+')
 				{
+					char var_name = var.get_name();
+					char var_value = var.get_value();
+
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
-					nfirst_number = atoi(&cfirst_number);
-					nsecond_number = atoi(&csecond_number);
+					if (cfirst_number == var_name)
+					{
+						nfirst_number = atoi(&var_value);
+					}
+					else{
+						nfirst_number = atoi(&cfirst_number);
+					}
+
+					if (csecond_number == var_name)
+					{
+						nsecond_number = atoi(&csecond_number);
+					}
+					else {
+                        nsecond_number = atoi(&csecond_number);
+					}		
+
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number + nsecond_number << endl;
 					}
+					else {
+						--i;
+					}
 				}
 				else if (acc[i] == '-')
 				{
+					char var_name = var.get_name();
+					char var_value = var.get_value();
+
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
-					nfirst_number = atoi(&cfirst_number);
-					nsecond_number = atoi(&csecond_number);
+					if (cfirst_number == var_name)
+					{
+						nfirst_number = atoi(&var_value);
+					}
+					else {
+						nfirst_number = atoi(&cfirst_number);
+					}
+
+					if (csecond_number == var_name)
+					{
+						nsecond_number = atoi(&csecond_number);
+					}
+					else {
+						nsecond_number = atoi(&csecond_number);
+					}
+
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number - nsecond_number << endl;
 					}
+					else {
+						--i;
+					}
 				}
 				else if (acc[i] == '/')
 				{
+					char var_name = var.get_name();
+					char var_value = var.get_value();
+
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
-					nfirst_number = atoi(&cfirst_number);
-					nsecond_number = atoi(&csecond_number);
+					if (cfirst_number == var_name)
+					{
+						nfirst_number = atoi(&var_value);
+					}
+					else {
+						nfirst_number = atoi(&cfirst_number);
+					}
+
+					if (csecond_number == var_name)
+					{
+						nsecond_number = atoi(&csecond_number);
+					}
+					else {
+						nsecond_number = atoi(&csecond_number);
+					}
+
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number / nsecond_number << endl;
 					}
+					else {
+						--i;
+					}
 				}
 				else if (acc[i] == '*')
 				{
+					char var_name = var.get_name();
+					char var_value = var.get_value();
+
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
-					nfirst_number = atoi(&cfirst_number);
-					nsecond_number = atoi(&csecond_number);
+					if (cfirst_number == var_name)
+					{
+						nfirst_number = atoi(&var_value);
+					}
+					else {
+						nfirst_number = atoi(&cfirst_number);
+					}
+
+					if (csecond_number == var_name)
+					{
+						nsecond_number = atoi(&csecond_number);
+					}
+					else {
+						nsecond_number = atoi(&csecond_number);
+					}
+
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number * nsecond_number << endl;
 					}
+					else {
+						--i;
+					}
 				}
 				else if (acc[i] == '%')
 				{
+					char var_name = var.get_name();
+					char var_value = var.get_value();
+
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
-					nfirst_number = atoi(&cfirst_number);
-					nsecond_number = atoi(&csecond_number);
+					if (cfirst_number == var_name)
+					{
+						nfirst_number = atoi(&var_value);
+					}
+					else {
+						nfirst_number = atoi(&cfirst_number);
+					}
+
+					if (csecond_number == var_name)
+					{
+						nsecond_number = atoi(&csecond_number);
+					}
+					else {
+						nsecond_number = atoi(&csecond_number);
+					}
+
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number % nsecond_number << endl;
+					}
+					else {
+						--i;
+					}
+				}
+				else if (acc[i] == '$')
+				{
+					++i;
+					char name = acc[i];
+					++i;
+					char value = acc[i];
+					var.set(name, value);
+					++i;
+					if (acc[i] == '.')
+					{
+						var.show_value();
+					}
+					else {
+						--i;
 					}
 				}
 			}
