@@ -15,27 +15,67 @@ void run_script()
 	// this var point current cell in cpu
 	unsigned int pointer = 0;
 	for (int i = 0; i < acc.size(); ++i)
-	{
-		if (acc[i] == NULL)
-		{
-			break;
-    	}
-		else if (acc[i] == '&' || acc[i] == ';')
-		{
-			break;
-		}
-		else if (acc[i] == '#')
-		{
-			++i;
-			int loop_counter = atoi(&acc[i]);
-			++i;
-			bool on = true; // if that's true loop is working
-			int j = 0; // if j == loop_counterloop isn't working
-			while (on)
+	{  	
+		   // that's a classic mode
+			if (acc[i] == ')')
 			{
-				if (acc[i] == '&' || acc[i] == ';')
+			
+				if (acc[i] == NULL)
 				{
 					break;
+				}
+				else if (acc[i] == ')' || acc[i] == '(')
+				{
+					//just do nothing.
+				}
+				else if (acc[i] == '&' || acc[i] == ';')
+				{
+					break;
+				}
+				else if (acc[i] == '#')
+				{
+					++i;
+					int loop_counter = atoi(&acc[i]);
+					++i;
+					bool on = true; // if that's true loop is working
+					int j = 0; // if j == loop_counterloop isn't working
+					while (on)
+					{
+						if (acc[i] == '&' || acc[i] == ';')
+						{
+							break;
+						}
+						else if (acc[i] == ',')
+						{
+							cout << "enter:";
+							cin >> cpu[pointer];
+						}
+						else if (acc[i] == '.')
+						{
+							cout << cpu[pointer];
+						}
+						else if (acc[i] == '>')
+						{
+							cpu[pointer]++;
+						}
+						else if (acc[i] == '<')
+						{
+							cpu[pointer]--;
+						}
+						else if (acc[i] == '+')
+						{
+							pointer++;
+						}
+						else if (acc[i] == '-')
+						{
+							pointer--;
+						}
+						++j;
+						if (j == loop_counter)
+						{
+							on = false;
+						}
+					}
 				}
 				else if (acc[i] == ',')
 				{
@@ -62,44 +102,108 @@ void run_script()
 				{
 					pointer--;
 				}
-				++j;
-				if (j == loop_counter)
+				else
 				{
-					on = false;
+					cout << endl << "shit in programm! symbol ¹" << i << '=' << acc[i];
+					exit(-1);
 				}
 			}
-		}
-		else if (acc[i] == ',')
-		{
-			cout << "enter:";
-			cin >> cpu[pointer];
-		}
-		else if (acc[i] == '.')
-		{
-			cout<<cpu[pointer];
-		}
-		else if (acc[i] == '>')
-		{
-			cpu[pointer]++;
-		}
-		else if (acc[i] == '<')
-		{
-			cpu[pointer]--;
-		}
-		else if (acc[i] == '+')
-		{
-			pointer++;
-		}
-		else if (acc[i] == '-')
-		{
-			pointer--;
-		}
-		else 
-		{
-			cout << endl << "shit in programm! symbol ¹" << i <<'=' << acc[i];
-			exit(-1);
-		}
-	
+			// that's a new powerful brainfuck's mode 
+			if (acc[i] == '(')
+			{
+			
+				++i;
+				if (acc[i] == ':')
+				{
+					for (int j = i; acc[j] != ';'; ++j)
+					{
+						if (acc[j] != ':')
+						{
+							cout << acc[j];
+						}
+					}
+				}
+				else if (acc[i] == '+')
+				{
+					char cfirst_number, csecond_number;
+					int nfirst_number, nsecond_number;
+					++i;
+					cfirst_number = acc[i];
+					++i;
+					csecond_number = acc[i];
+					nfirst_number = atoi(&cfirst_number);
+					nsecond_number = atoi(&csecond_number);
+					++i;
+					if (acc[i] == '.')
+					{
+						cout << nfirst_number + nsecond_number << endl;
+					}
+				}
+				else if (acc[i] == '-')
+				{
+					char cfirst_number, csecond_number;
+					int nfirst_number, nsecond_number;
+					++i;
+					cfirst_number = acc[i];
+					++i;
+					csecond_number = acc[i];
+					nfirst_number = atoi(&cfirst_number);
+					nsecond_number = atoi(&csecond_number);
+					++i;
+					if (acc[i] == '.')
+					{
+						cout << nfirst_number - nsecond_number << endl;
+					}
+				}
+				else if (acc[i] == '/')
+				{
+					char cfirst_number, csecond_number;
+					int nfirst_number, nsecond_number;
+					++i;
+					cfirst_number = acc[i];
+					++i;
+					csecond_number = acc[i];
+					nfirst_number = atoi(&cfirst_number);
+					nsecond_number = atoi(&csecond_number);
+					++i;
+					if (acc[i] == '.')
+					{
+						cout << nfirst_number / nsecond_number << endl;
+					}
+				}
+				else if (acc[i] == '*')
+				{
+					char cfirst_number, csecond_number;
+					int nfirst_number, nsecond_number;
+					++i;
+					cfirst_number = acc[i];
+					++i;
+					csecond_number = acc[i];
+					nfirst_number = atoi(&cfirst_number);
+					nsecond_number = atoi(&csecond_number);
+					++i;
+					if (acc[i] == '.')
+					{
+						cout << nfirst_number * nsecond_number << endl;
+					}
+				}
+				else if (acc[i] == '%')
+				{
+					char cfirst_number, csecond_number;
+					int nfirst_number, nsecond_number;
+					++i;
+					cfirst_number = acc[i];
+					++i;
+					csecond_number = acc[i];
+					nfirst_number = atoi(&cfirst_number);
+					nsecond_number = atoi(&csecond_number);
+					++i;
+					if (acc[i] == '.')
+					{
+						cout << nfirst_number % nsecond_number << endl;
+					}
+				}
+			}
 	}
 
 }
