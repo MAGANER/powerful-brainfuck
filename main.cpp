@@ -451,7 +451,7 @@ void run_script()
 					{
 						value = ' ';
 					}
-					else {
+					if(value == NULL) {
 						error(i);
 					}
 					var.set(name, value);
