@@ -125,11 +125,17 @@ void run_script()
 				{
 					for (int j = i; acc[j] != ';'; ++j)
 					{
+						if (acc[j] == var.get_name())
+						{
+							var.show_value();
+							break;
+						}
 						if (acc[j] != ':')
 						{
 							cout << acc[j];
 						}
 					}
+					cout << endl;
 				}
 				else if (acc[i] == '+')
 				{
@@ -470,6 +476,7 @@ void run_script()
 					if (acc[i] == var.get_name())
 					{
 						var.set(' ', ' ');
+						cout << "variable" << " is killed!"<<endl;
 					}
 					else {
 						error(i);
