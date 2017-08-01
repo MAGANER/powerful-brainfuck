@@ -544,17 +544,61 @@ void check_format()
 
 int main(int argc, char* argv[])
 {
+	string path_to_script;
+	bool read = false;
 	string file_path = argv[1];
-	strcpy_s(path_to_file, argv[1]); // we need this to check pbf in file end
-
-	ifstream script(file_path);
-	while(script)
+	if (file_path == "open_ide")
 	{
-		script.get(current_symbol);
-		acc.push_back(current_symbol);
+		system("start ide.py");
+		while (true)
+		{	
+			char run_on = ' ';
+			
+			ifstream script("sys2.spbf");
+			while (script)
+			{
+				script >> path_to_script;
+			}
+			script.close();
+            ifstream run("sys.spbf");
+			while (run)
+			{
+					run.get(run_on);
+			}
+			run.close();
+			if (run_on == 'r')
+			{
+				read = true;
+				break;
+			}
+		}
 	}
-	script.close();
-	check_format();
-	run_script();
+	if (read == false)
+	{
+		strcpy_s(path_to_file, argv[1]); // we need this to check pbf in file end
+
+		ifstream script(file_path);
+		while (script)
+		{
+			script.get(current_symbol);
+			acc.push_back(current_symbol);
+		}
+		script.close();
+		check_format();
+		run_script();
+	}
+	else if (read == true) 
+	{
+		
+		ifstream script(path_to_script);
+		while (script)
+		{
+			script.get(current_symbol);
+			acc.push_back(current_symbol);
+		}
+		script.close();
+		check_format();
+		run_script();
+	}
 	return 0;
 }
