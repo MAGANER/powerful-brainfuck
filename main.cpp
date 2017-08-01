@@ -11,6 +11,12 @@ char cpu[60000];           // powerful brainfuck memory
 vector<char> acc;          // vector with script
 char current_symbol;
 char path_to_file[100];
+
+void error(int i)
+{
+	cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+	exit(-1);
+}
 void run_script()
 {
 	// this var point current cell in cpu
@@ -172,8 +178,7 @@ void run_script()
 							var_value = summ;
 						}
 						else {
-							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
-							exit(-1);
+							error(i);
 						}
 						++i;
 						if (acc[i] == '.')
@@ -235,8 +240,7 @@ void run_script()
 							var_value = summ;
 						}
 						else {
-							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
-							exit(-1);
+							error(i);
 						}
 						++i;
 						if (acc[i] == '.')
@@ -297,8 +301,7 @@ void run_script()
 							var_value = summ;
 						}
 						else {
-							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
-							exit(-1);
+							error(i);
 						}
 						++i;
 						if (acc[i] == '.')
@@ -359,8 +362,7 @@ void run_script()
 							var_value = summ;
 						}
 						else {
-							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
-							exit(-1);
+							error(i);
 						}
 						++i;
 						if (acc[i] == '.')
@@ -423,8 +425,7 @@ void run_script()
 							var_value = summ;
 						}
 						else {
-							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
-							exit(-1);
+							error(i);
 						}
 						++i;
 						if (acc[i] == '.')
@@ -451,8 +452,7 @@ void run_script()
 						value = ' ';
 					}
 					else {
-						cout << "shit in programm! " << "¹" << i << "="<<acc[i];
-						exit(-1);
+						error(i);
 					}
 					var.set(name, value);
 					++i;
@@ -462,6 +462,17 @@ void run_script()
 					}
 					else {
 						--i;
+					}
+				}
+				else if (acc[i] == '!')
+				{
+					++i;
+					if (acc[i] == var.get_name())
+					{
+						var.set(' ', ' ');
+					}
+					else {
+						error(i);
 					}
 				}
 			}
