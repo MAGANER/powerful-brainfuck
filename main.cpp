@@ -114,7 +114,6 @@ void run_script()
 			variable var; 
 			if (acc[i] == '(')
 			{
-			
 				++i;
 				if (acc[i] == ':')
 				{
@@ -133,10 +132,14 @@ void run_script()
 
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
+					int summ = 0;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
+					
+					// we check var in expression,cos uf there is var, then
+					// we should add var value in expression
 					if (cfirst_number == var_name)
 					{
 						nfirst_number = atoi(&var_value);
@@ -152,11 +155,35 @@ void run_script()
 					else {
                         nsecond_number = atoi(&csecond_number);
 					}		
+					/////////////////////////////
+
 
 					++i;
 					if (acc[i] == '.')
 					{
-						cout << nfirst_number + nsecond_number << endl;
+						summ = nfirst_number + nsecond_number;
+						cout << summ << endl;
+					}
+					else if (acc[i] == '=')
+					{
+						++i;
+						if (acc[i] == var_name)
+						{
+							var_value = summ;
+						}
+						else {
+							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+							exit(-1);
+						}
+						++i;
+						if (acc[i] == '.')
+						{
+							summ = nfirst_number + nsecond_number;
+							cout << summ << endl;
+						}
+						else {
+							--i;
+						}
 					}
 					else {
 						--i;
@@ -169,10 +196,14 @@ void run_script()
 
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
+					int summ = 0;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
+
+					// we check var in expression,cos uf there is var, then
+					// we should add var value in expression
 					if (cfirst_number == var_name)
 					{
 						nfirst_number = atoi(&var_value);
@@ -188,11 +219,34 @@ void run_script()
 					else {
 						nsecond_number = atoi(&csecond_number);
 					}
+					////////
 
 					++i;
 					if (acc[i] == '.')
 					{
-						cout << nfirst_number - nsecond_number << endl;
+						summ = nfirst_number - nsecond_number;
+						cout << summ << endl;
+					}
+					else if (acc[i] == '=')
+					{
+						++i;
+						if (acc[i] == var_name)
+						{
+							var_value = summ;
+						}
+						else {
+							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+							exit(-1);
+						}
+						++i;
+						if (acc[i] == '.')
+						{
+							summ = nfirst_number - nsecond_number;
+							cout << summ << endl;
+						}
+						else {
+							--i;
+						}
 					}
 					else {
 						--i;
@@ -205,10 +259,14 @@ void run_script()
 
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
+					int summ = 0;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
+
+					// we check var in expression,cos uf there is var, then
+					// we should add var value in expression
 					if (cfirst_number == var_name)
 					{
 						nfirst_number = atoi(&var_value);
@@ -224,11 +282,33 @@ void run_script()
 					else {
 						nsecond_number = atoi(&csecond_number);
 					}
+					//////////
 
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number / nsecond_number << endl;
+					}
+					else if (acc[i] == '=')
+					{
+						++i;
+						if (acc[i] == var_name)
+						{
+							var_value = summ;
+						}
+						else {
+							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+							exit(-1);
+						}
+						++i;
+						if (acc[i] == '.')
+						{
+							summ = nfirst_number / nsecond_number;
+							cout << summ << endl;
+						}
+						else {
+							--i;
+						}
 					}
 					else {
 						--i;
@@ -241,10 +321,14 @@ void run_script()
 
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
+					int summ = 0;
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
+
+					// we check var in expression,cos uf there is var, then
+					// we should add var value in expression
 					if (cfirst_number == var_name)
 					{
 						nfirst_number = atoi(&var_value);
@@ -260,11 +344,33 @@ void run_script()
 					else {
 						nsecond_number = atoi(&csecond_number);
 					}
+                     //////////
 
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number * nsecond_number << endl;
+					}
+					else if (acc[i] == '=')
+					{
+						++i;
+						if (acc[i] == var_name)
+						{
+							var_value = summ;
+						}
+						else {
+							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+							exit(-1);
+						}
+						++i;
+						if (acc[i] == '.')
+						{
+							summ = nfirst_number * nsecond_number;
+							cout << summ << endl;
+						}
+						else {
+							--i;
+						}
 					}
 					else {
 						--i;
@@ -277,10 +383,15 @@ void run_script()
 
 					char cfirst_number, csecond_number;
 					int nfirst_number, nsecond_number;
+					int summ = 0;
+
 					++i;
 					cfirst_number = acc[i];
 					++i;
 					csecond_number = acc[i];
+
+					// we check var in expression,cos uf there is var, then
+					// we should add var value in expression
 					if (cfirst_number == var_name)
 					{
 						nfirst_number = atoi(&var_value);
@@ -296,11 +407,34 @@ void run_script()
 					else {
 						nsecond_number = atoi(&csecond_number);
 					}
+					/////////
+
 
 					++i;
 					if (acc[i] == '.')
 					{
 						cout << nfirst_number % nsecond_number << endl;
+					}
+					else if (acc[i] == '=')
+					{
+						++i;
+						if (acc[i] == var_name)
+						{
+							var_value = summ;
+						}
+						else {
+							cout << "shit in programm! " << "¹" << i << "=" << acc[i];
+							exit(-1);
+						}
+						++i;
+						if (acc[i] == '.')
+						{
+							summ = nfirst_number % nsecond_number;
+							cout << summ << endl;
+						}
+						else {
+							--i;
+						}
 					}
 					else {
 						--i;
@@ -312,6 +446,14 @@ void run_script()
 					char name = acc[i];
 					++i;
 					char value = acc[i];
+					if (value == '^')
+					{
+						value = ' ';
+					}
+					else {
+						cout << "shit in programm! " << "¹" << i << "="<<acc[i];
+						exit(-1);
+					}
 					var.set(name, value);
 					++i;
 					if (acc[i] == '.')
