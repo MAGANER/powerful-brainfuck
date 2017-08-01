@@ -9,6 +9,8 @@ public:
 	void show_name();
 	void show_value();
 	void set(char getting_name, char getting_value);
+	void set(char getting_value);
+
 private:
 	char name;
 	char value;

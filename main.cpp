@@ -455,9 +455,9 @@ void run_script()
 					char value = acc[i];
 					if (value == '^')
 					{
-						value = ' ';
+						value = NULL;
 					}
-					if(value == NULL) {
+					else if(value == NULL) {
 						error(i);
 					}
 					var.set(name, value);
@@ -480,6 +480,16 @@ void run_script()
 					}
 					else {
 						error(i);
+					}
+				}
+				else if (acc[i] == '>')
+				{
+					++i;
+					if (acc[i] == var.get_name())
+					{
+						char var_value;
+						cin >> var_value;
+						var.set(var_value);
 					}
 				}
 			}
