@@ -589,16 +589,16 @@ int main(int argc, char* argv[])
 	}
 	else if (read == true) 
 	{
+			ifstream script(path_to_script);
+			while (script)
+			{
+				script.get(current_symbol);
+				acc.push_back(current_symbol);
+			}
+			script.close();
+			check_format();
+			run_script();
 		
-		ifstream script(path_to_script);
-		while (script)
-		{
-			script.get(current_symbol);
-			acc.push_back(current_symbol);
-		}
-		script.close();
-		check_format();
-		run_script();
 	}
 	return 0;
 }
