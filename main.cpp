@@ -7,7 +7,6 @@
 #include"variable.h"
 using namespace std;
 
-char cpu[60000];           // powerful brainfuck memory
 vector<char> acc;          // vector with script
 char current_symbol;
 char path_to_file[100];
@@ -23,99 +22,6 @@ void run_script()
 	unsigned int pointer = 0;
 	for (int i = 0; i < acc.size(); ++i)
 	{  	
-		   // that's a classic mode
-			if (acc[i] == ')')
-			{
-			
-				if (acc[i] == NULL)
-				{
-					break;
-				}
-				else if (acc[i] == ')' || acc[i] == '(')
-				{
-					//just do nothing.
-				}
-				else if (acc[i] == '&' || acc[i] == ';')
-				{
-					break;
-				}
-				else if (acc[i] == '#')
-				{
-					++i;
-					int loop_counter = atoi(&acc[i]);
-					++i;
-					bool on = true; // if that's true loop is working
-					int j = 0; // if j == loop_counterloop isn't working
-					while (on)
-					{
-						if (acc[i] == '&' || acc[i] == ';')
-						{
-							break;
-						}
-						else if (acc[i] == ',')
-						{
-							cout << "enter:";
-							cin >> cpu[pointer];
-						}
-						else if (acc[i] == '.')
-						{
-							cout << cpu[pointer];
-						}
-						else if (acc[i] == '>')
-						{
-							cpu[pointer]++;
-						}
-						else if (acc[i] == '<')
-						{
-							cpu[pointer]--;
-						}
-						else if (acc[i] == '+')
-						{
-							pointer++;
-						}
-						else if (acc[i] == '-')
-						{
-							pointer--;
-						}
-						++j;
-						if (j == loop_counter)
-						{
-							on = false;
-						}
-					}
-				}
-				else if (acc[i] == ',')
-				{
-					cout << "enter:";
-					cin >> cpu[pointer];
-				}
-				else if (acc[i] == '.')
-				{
-					cout << cpu[pointer];
-				}
-				else if (acc[i] == '>')
-				{
-					cpu[pointer]++;
-				}
-				else if (acc[i] == '<')
-				{
-					cpu[pointer]--;
-				}
-				else if (acc[i] == '+')
-				{
-					pointer++;
-				}
-				else if (acc[i] == '-')
-				{
-					pointer--;
-				}
-				else
-				{
-					cout << endl << "shit in programm! symbol ¹" << i << '=' << acc[i];
-					exit(-1);
-				}
-			}
-
 			// that's a new powerful brainfuck's mode 
 			variable var; 
 			if (acc[i] == '(')
