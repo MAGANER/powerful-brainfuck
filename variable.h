@@ -14,7 +14,5 @@ public:
 private:
 	char name;
 	char value;
-
-
 };
 
